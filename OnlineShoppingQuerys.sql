@@ -283,9 +283,9 @@ and copiers and fax all 4 years. */
 
 
 
-------------
+-------------
 -- SHIPPING
-------------
+-------------
 
 /* Number of orders for each type of shipping and the percentage of each type over the total */
 SELECT
