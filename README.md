@@ -38,6 +38,6 @@ To access specific details on the questions addressed and the corresponding resu
 
 Average sale per year
 
-	The highest average sale was reached in the first year, but then, the following 3 years, the average sale has been below that of the first year by around 15%.
+The highest average sale was reached in the first year, but then, the following 3 years, the average sale has been below that of the first year by around 15%.
 
 [![Average-sale-per-year.png](https://i.postimg.cc/vBQ5JYvW/Average-sale-per-year.png)](https://postimg.cc/Y4s4gwZ9)
