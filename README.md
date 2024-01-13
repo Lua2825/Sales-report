@@ -93,7 +93,7 @@ Regular air shipment is by far the most common type of shipment.
 
 [![Number-of-orders-for-each-type-of-shipping-and-the-percentage-of-each-type-over-the-total.png](https://i.postimg.cc/02tXZ3PW/Number-of-orders-for-each-type-of-shipping-and-the-percentage-of-each-type-over-the-total.png)](https://postimg.cc/bstRwmGk)
 
-*Number of shipping per month, sorted from the month with the highest number of shipments.*
+***Number of shipping per month, sorted from the month with the highest number of shipments.***
 
 There is no significant variation in the number of shipments each month.
 
