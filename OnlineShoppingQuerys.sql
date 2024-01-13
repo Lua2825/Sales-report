@@ -78,8 +78,7 @@ JOIN products
   ON ma.Prod_id = products.Prod_id
 GROUP BY 1
 ORDER BY sales_2009 DESC;
-/* Each subcategory has remained around the same position each year, 
-without significant fluctuations.*/
+/* There appear to be no significant changes in the subcategories' rankings over the years.*/
 
 
 /* Annual sales per province */
