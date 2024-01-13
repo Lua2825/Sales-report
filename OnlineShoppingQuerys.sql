@@ -53,7 +53,7 @@ SELECT
     ROUND(IFNULL(profit - LAG(profit) OVER(ORDER BY year),0),3) AS YOY_difference,
     ROUND(IFNULL(((profit - IFNULL(LAG(profit) OVER(ORDER BY year),0)) / IFNULL(LAG(profit) OVER(ORDER BY year),0)) * 100.0, 0), 3) AS percentage
 FROM yearly_profit;
-/* In terms of profits, the year-on-year difference has been mostly negative. 
+/* In terms of profits, the year-over-year difference has been mostly negative. 
 It is recommended to look for areas of improvement. */
 
 
