@@ -2,9 +2,9 @@
 
 I analyzed a data set from an online store. Although the data is not current, my intention was to put into practice and demonstrate the use of window functions and JOINs in the preparation of a sales report.
 
-Some of the ways in which these functions were used in the report included: cross-referencing information between tables to obtain data such as year-over-year growth, evaluating the performance of an aspect or set of elements through rankings (sales and number of monthly orders, number of products sold, sales by province, customers) and percentage over totals.
+Some of the ways in which these functions were used in the report included: the combination of records between two or more tables to obtain different information from each one of them, evaluating the performance of an aspect or set of elements through rankings (sales and number of monthly orders, number of products sold, sales by province, customers) and percentage over totals.
 
-To access specific details on the questions addressed and the corresponding results, you can simply click on the topic of interest in the list below. However, I recommend reviewing the entire content from start to finish for a comprehensive understanding. And to see in detail the SQL queries I used, you can access the document with the name "OnlineShoppingQuerys.sql" in this repository.
+To see in detail the SQL queries I used, you can access the document with the name "OnlineShoppingQuerys.sql" in this repository.
 
 ## Sales
 
