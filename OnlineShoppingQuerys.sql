@@ -108,6 +108,61 @@ sales in the first year but thereafter have failed to match or exceed that first
 
 
 
+---------
+-- DATES
+---------
+
+/* Monthly sales for each year. */
+SELECT
+    strftime('%m', ord.Order_Date) AS month,
+    IFNULL(SUM(CASE
+        WHEN strftime('%Y', ord.Order_Date) = '2009' THEN ma.Sales END), 0) AS sales_2009,
+    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2009' THEN ma.Sales END), 0) DESC) AS rank_2009,
+    IFNULL(SUM(CASE
+        WHEN strftime('%Y', ord.Order_Date) = '2010' THEN ma.Sales END), 0) AS sales_2010,
+    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2010' THEN ma.Sales END), 0) DESC) AS rank_2010,
+    IFNULL(SUM(CASE
+        WHEN strftime('%Y', ord.Order_Date) = '2011' THEN ma.Sales END), 0) AS sales_2011,
+    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2011' THEN ma.Sales END), 0) DESC) AS rank_2011,
+    IFNULL(SUM(CASE
+        WHEN strftime('%Y', ord.Order_Date) = '2012' THEN ma.Sales END), 0) AS sales_2012,
+    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2012' THEN ma.Sales END), 0) DESC) AS rank_2012
+FROM orders ord
+JOIN market ma
+  ON ord.Ord_id = ma.Ord_id
+GROUP BY 1
+ORDER BY sales_2009 DESC;
+/* First, the sales of the first year have been ordered according to the month with the highest sales, and 
+then we can see their evolution over the years through the annual rankings. There does not seem to be a 
+relevant pattern for monthly sales. Only December and October seem to have relative stability at the 
+top over the 4 years. */
+
+
+/* Monthly sales and orders. Is there a correlation? */
+SELECT
+  strftime('%Y', ord.Order_Date) AS year,
+  strftime('%m', ord.Order_Date) AS month,
+  COUNT(ma.Ord_id) AS num_of_orders,
+  RANK() OVER(PARTITION BY strftime('%Y', ord.Order_Date)
+              ORDER BY COUNT(ma.Ord_id) DESC) AS rank_orders,
+  SUM(ma.Sales) AS sales,
+  RANK() OVER(PARTITION BY strftime('%Y', ord.Order_Date)
+              ORDER BY SUM(ma.Sales) DESC) AS rank_sales
+FROM orders ord
+JOIN market ma
+  ON ord.Ord_id = ma.Ord_id
+GROUP BY 1,2
+ORDER BY year, rank_orders;
+/* I compared the monthly orders of each year, sorted by their annual 
+ranking, with the monthly sales of each year and their ranking, looking to 
+see if there was any correlation between sales and the number of orders. 
+Comparing both rankings shows that there does not seem to be a relationship, 
+higher number of orders does not mean higher sales. */
+
+
+
+
+
 -------------
 -- CUSTOMERS
 -------------
@@ -224,61 +279,6 @@ ORDER BY qty_2009 DESC;
 /* Bookcases; Scissors, rulers and trimmers; and Copiers and Fax, were the only 
 sub-categories below 1000 units sold. Bookcases 1 year, scissors, rulers and trimmers 2 years, 
 and copiers and fax all 4 years. */
-
-
-
-
-
----------
--- DATES
----------
-
-/* Monthly sales for each year. */
-SELECT
-    strftime('%m', ord.Order_Date) AS month,
-    IFNULL(SUM(CASE
-        WHEN strftime('%Y', ord.Order_Date) = '2009' THEN ma.Sales END), 0) AS sales_2009,
-    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2009' THEN ma.Sales END), 0) DESC) AS rank_2009,
-    IFNULL(SUM(CASE
-        WHEN strftime('%Y', ord.Order_Date) = '2010' THEN ma.Sales END), 0) AS sales_2010,
-    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2010' THEN ma.Sales END), 0) DESC) AS rank_2010,
-    IFNULL(SUM(CASE
-        WHEN strftime('%Y', ord.Order_Date) = '2011' THEN ma.Sales END), 0) AS sales_2011,
-    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2011' THEN ma.Sales END), 0) DESC) AS rank_2011,
-    IFNULL(SUM(CASE
-        WHEN strftime('%Y', ord.Order_Date) = '2012' THEN ma.Sales END), 0) AS sales_2012,
-    RANK() OVER(ORDER BY IFNULL(SUM(CASE WHEN strftime('%Y', ord.Order_Date) = '2012' THEN ma.Sales END), 0) DESC) AS rank_2012
-FROM orders ord
-JOIN market ma
-  ON ord.Ord_id = ma.Ord_id
-GROUP BY 1
-ORDER BY sales_2009 DESC;
-/* First, the sales of the first year have been ordered according to the month with the highest sales, and 
-then we can see their evolution over the years through the annual rankings. There does not seem to be a 
-relevant pattern for monthly sales. Only December and October seem to have relative stability at the 
-top over the 4 years. */
-
-
-/* Monthly sales and orders. Is there a correlation? */
-SELECT
-  strftime('%Y', ord.Order_Date) AS year,
-  strftime('%m', ord.Order_Date) AS month,
-  COUNT(ma.Ord_id) AS num_of_orders,
-  RANK() OVER(PARTITION BY strftime('%Y', ord.Order_Date)
-              ORDER BY COUNT(ma.Ord_id) DESC) AS rank_orders,
-  SUM(ma.Sales) AS sales,
-  RANK() OVER(PARTITION BY strftime('%Y', ord.Order_Date)
-              ORDER BY SUM(ma.Sales) DESC) AS rank_sales
-FROM orders ord
-JOIN market ma
-  ON ord.Ord_id = ma.Ord_id
-GROUP BY 1,2
-ORDER BY year, rank_orders;
-/* I compared the monthly orders of each year, sorted by their annual 
-ranking, with the monthly sales of each year and their ranking, looking to 
-see if there was any correlation between sales and the number of orders. 
-Comparing both rankings shows that there does not seem to be a relationship, 
-higher number of orders does not mean higher sales. */
 
 
 
