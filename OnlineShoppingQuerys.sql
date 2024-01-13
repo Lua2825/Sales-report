@@ -234,9 +234,7 @@ and copiers and fax all 4 years. */
 -- DATES
 ---------
 
-/* Monthly sales for each year. First, the sales of the first year have been ordered 
-according to the month with the highest sales, and then we can see their evolution over 
-the years through the annual rankings. */
+/* Monthly sales for each year. */
 SELECT
     strftime('%m', ord.Order_Date) AS month,
     IFNULL(SUM(CASE
@@ -256,8 +254,10 @@ JOIN market ma
   ON ord.Ord_id = ma.Ord_id
 GROUP BY 1
 ORDER BY sales_2009 DESC;
-/* There does not seem to be a relevant pattern for monthly sales. Only December and October 
-seem to have relative stability at the top over the 4 years. */
+/* First, the sales of the first year have been ordered according to the month with the highest sales, and 
+then we can see their evolution over the years through the annual rankings. There does not seem to be a 
+relevant pattern for monthly sales. Only December and October seem to have relative stability at the 
+top over the 4 years. */
 
 
 /* Monthly sales and orders. Is there a correlation? */
