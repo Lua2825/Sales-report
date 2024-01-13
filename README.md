@@ -7,10 +7,10 @@ Some of the ways in which these functions were used in the report included: cros
 To access specific details on the questions addressed and the corresponding results, you can simply click on the topic of interest in the list below. However, I recommend reviewing the entire content from start to finish for a comprehensive understanding. And to see in detail the SQL queries I used, you can access the document with the name "OnlineShoppingQuerys.sql" in this repository.
 
 
-## Report questions
+## Table of contents
 
 ### Sales
-1. Average sale per year.
+1. [Average sale per year.](#average-sale-per-year)
 2. Annual revenue and year-over-year difference.
 3. Annual profit and year-over-year difference.
 4. Annual sales by product subcategories.
@@ -35,6 +35,9 @@ To access specific details on the questions addressed and the corresponding resu
 
 
 ## Sales
-1. Average sale per year.
+
+Average sale per year
+
 	The highest average sale was reached in the first year, but then, the following 3 years, the average sale has been below that of the first year by around 15%.
-![](https://drive.google.com/file/d/1zAXV5Zux1lo6U6HIrZRy548H2iuVdruQ/view?usp=drive_link){}
+
+[![Average-sale-per-year.png](https://i.postimg.cc/vBQ5JYvW/Average-sale-per-year.png)](https://postimg.cc/Y4s4gwZ9)
